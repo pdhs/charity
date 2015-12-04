@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampaignEditDlg" widgetVar="CampaignEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCampaignTitle}">
+            <h:form id="CampaignEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{campaignController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCampaignLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{campaignController.selected.id}" title="#{bundle.EditCampaignTitle_id}" required="true" requiredMessage="#{bundle.EditCampaignRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditCampaignLabel_campaign}" for="campaign" />
+                        <p:inputText id="campaign" value="#{campaignController.selected.campaign}" title="#{bundle.EditCampaignTitle_campaign}" required="true" requiredMessage="#{bundle.EditCampaignRequiredMessage_campaign}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campaignController.update}" value="#{bundle.Save}" update="display,:CampaignListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CampaignEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CampaignEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

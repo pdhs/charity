@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MembersViewDlg" widgetVar="MembersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMembersTitle}">
+            <h:form id="MembersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{membersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMembersLabel_id}"/>
+                        <h:outputText value="#{membersController.selected.id}" title="#{bundle.ViewMembersTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_nic}"/>
+                        <h:outputText value="#{membersController.selected.nic}" title="#{bundle.ViewMembersTitle_nic}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_nameSin}"/>
+                        <h:outputText value="#{membersController.selected.nameSin}" title="#{bundle.ViewMembersTitle_nameSin}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_nameEng}"/>
+                        <h:outputText value="#{membersController.selected.nameEng}" title="#{bundle.ViewMembersTitle_nameEng}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_addressEng}"/>
+                        <h:outputText value="#{membersController.selected.addressEng}" title="#{bundle.ViewMembersTitle_addressEng}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_addressSin}"/>
+                        <h:outputText value="#{membersController.selected.addressSin}" title="#{bundle.ViewMembersTitle_addressSin}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_dob}"/>
+                        <h:outputText value="#{membersController.selected.dob}" title="#{bundle.ViewMembersTitle_dob}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMembersLabel_tel1}"/>
+                        <h:outputText value="#{membersController.selected.tel1}" title="#{bundle.ViewMembersTitle_tel1}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_tel2}"/>
+                        <h:outputText value="#{membersController.selected.tel2}" title="#{bundle.ViewMembersTitle_tel2}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_relationshipId}"/>
+                        <h:outputText value="#{membersController.selected.relationshipId}" title="#{bundle.ViewMembersTitle_relationshipId}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_clusterId}"/>
+                        <h:outputText value="#{membersController.selected.clusterId}" title="#{bundle.ViewMembersTitle_clusterId}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_dsignationId}"/>
+                        <h:outputText value="#{membersController.selected.dsignationId}" title="#{bundle.ViewMembersTitle_dsignationId}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_chiefOccupant}"/>
+                        <h:outputText value="#{membersController.selected.chiefOccupant}" title="#{bundle.ViewMembersTitle_chiefOccupant}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MembersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

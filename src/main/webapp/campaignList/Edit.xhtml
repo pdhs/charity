@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampaignListEditDlg" widgetVar="CampaignListEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCampaignListTitle}">
+            <h:form id="CampaignListEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{campaignListController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCampaignListLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{campaignListController.selected.id}" title="#{bundle.EditCampaignListTitle_id}" required="true" requiredMessage="#{bundle.EditCampaignListRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditCampaignListLabel_campaignListName}" for="campaignListName" />
+                        <p:inputText id="campaignListName" value="#{campaignListController.selected.campaignListName}" title="#{bundle.EditCampaignListTitle_campaignListName}" required="true" requiredMessage="#{bundle.EditCampaignListRequiredMessage_campaignListName}"/>
+                        <p:outputLabel value="#{bundle.EditCampaignListLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy HH:mm:ss" value="#{campaignListController.selected.date}" title="#{bundle.EditCampaignListTitle_date}" required="true" requiredMessage="#{bundle.EditCampaignListRequiredMessage_date}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCampaignListLabel_campaignId}" for="campaignId" />
+                        <p:selectOneMenu id="campaignId" value="#{campaignListController.selected.campaignId}" required="true" requiredMessage="#{bundle.EditCampaignListRequiredMessage_campaignId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{campaignController.itemsAvailableSelectOne}"
+                                           var="campaignIdItem"
+                                           itemValue="#{campaignIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campaignListController.update}" value="#{bundle.Save}" update="display,:CampaignListListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CampaignListEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CampaignListEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

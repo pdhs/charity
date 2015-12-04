@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MembersEditDlg" widgetVar="MembersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMembersTitle}">
+            <h:form id="MembersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{membersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMembersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{membersController.selected.id}" title="#{bundle.EditMembersTitle_id}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_nic}" for="nic" />
+                        <p:inputText id="nic" value="#{membersController.selected.nic}" title="#{bundle.EditMembersTitle_nic}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_nic}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_nameSin}" for="nameSin" />
+                        <p:inputText id="nameSin" value="#{membersController.selected.nameSin}" title="#{bundle.EditMembersTitle_nameSin}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_nameSin}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_nameEng}" for="nameEng" />
+                        <p:inputText id="nameEng" value="#{membersController.selected.nameEng}" title="#{bundle.EditMembersTitle_nameEng}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_nameEng}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_addressEng}" for="addressEng" />
+                        <p:inputText id="addressEng" value="#{membersController.selected.addressEng}" title="#{bundle.EditMembersTitle_addressEng}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_addressEng}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_addressSin}" for="addressSin" />
+                        <p:inputText id="addressSin" value="#{membersController.selected.addressSin}" title="#{bundle.EditMembersTitle_addressSin}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_addressSin}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_dob}" for="dob" />
+                        <p:calendar id="dob" pattern="MM/dd/yyyy" value="#{membersController.selected.dob}" title="#{bundle.EditMembersTitle_dob}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_dob}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_tel1}" for="tel1" />
+                        <p:inputText id="tel1" value="#{membersController.selected.tel1}" title="#{bundle.EditMembersTitle_tel1}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_tel1}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_tel2}" for="tel2" />
+                        <p:inputText id="tel2" value="#{membersController.selected.tel2}" title="#{bundle.EditMembersTitle_tel2}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_tel2}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_relationshipId}" for="relationshipId" />
+                        <p:selectOneMenu id="relationshipId" value="#{membersController.selected.relationshipId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_relationshipId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{relationshipController.itemsAvailableSelectOne}"
+                                           var="relationshipIdItem"
+                                           itemValue="#{relationshipIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_clusterId}" for="clusterId" />
+                        <p:selectOneMenu id="clusterId" value="#{membersController.selected.clusterId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_clusterId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clusterController.itemsAvailableSelectOne}"
+                                           var="clusterIdItem"
+                                           itemValue="#{clusterIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_dsignationId}" for="dsignationId" />
+                        <p:selectOneMenu id="dsignationId" value="#{membersController.selected.dsignationId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_dsignationId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{designationController.itemsAvailableSelectOne}"
+                                           var="dsignationIdItem"
+                                           itemValue="#{dsignationIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_chiefOccupant}" for="chiefOccupant" />
+                        <p:selectOneMenu id="chiefOccupant" value="#{membersController.selected.chiefOccupant}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{chiefOccupantController.itemsAvailableSelectOne}"
+                                           var="chiefOccupantItem"
+                                           itemValue="#{chiefOccupantItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{membersController.update}" value="#{bundle.Save}" update="display,:MembersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MembersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MembersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

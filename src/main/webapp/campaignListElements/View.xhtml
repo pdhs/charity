@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampaignListElementsViewDlg" widgetVar="CampaignListElementsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCampaignListElementsTitle}">
+            <h:form id="CampaignListElementsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{campaignListElementsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCampaignListElementsLabel_id}"/>
+                        <h:outputText value="#{campaignListElementsController.selected.id}" title="#{bundle.ViewCampaignListElementsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCampaignListElementsLabel_campaignListId}"/>
+                        <h:outputText value="#{campaignListElementsController.selected.campaignListId}" title="#{bundle.ViewCampaignListElementsTitle_campaignListId}"/>
+                        <h:outputText value="#{bundle.ViewCampaignListElementsLabel_memberId}"/>
+                        <h:outputText value="#{campaignListElementsController.selected.memberId}" title="#{bundle.ViewCampaignListElementsTitle_memberId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CampaignListElementsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

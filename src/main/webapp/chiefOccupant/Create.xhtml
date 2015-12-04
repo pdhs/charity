@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ChiefOccupantCreateDlg" widgetVar="ChiefOccupantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateChiefOccupantTitle}">
+            <h:form id="ChiefOccupantCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{chiefOccupantController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateChiefOccupantLabel_memberNic}" for="memberNic" />
+                        <p:inputText id="memberNic" value="#{chiefOccupantController.selected.memberNic}" title="#{bundle.CreateChiefOccupantTitle_memberNic}" required="true" requiredMessage="#{bundle.CreateChiefOccupantRequiredMessage_memberNic}"/>
+                        <p:outputLabel value="#{bundle.CreateChiefOccupantLabel_members}" for="members" />
+                        <p:selectOneMenu id="members" value="#{chiefOccupantController.selected.members}" required="true" requiredMessage="#{bundle.EditChiefOccupantRequiredMessage_members}">
+                            <f:selectItems value="#{membersController.itemsAvailableSelectOne}"
+                                           var="membersItem"
+                                           itemValue="#{membersItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateChiefOccupantLabel_coNic}" for="coNic" />
+                        <p:selectOneMenu id="coNic" value="#{chiefOccupantController.selected.coNic}" required="true" requiredMessage="#{bundle.EditChiefOccupantRequiredMessage_coNic}">
+                            <f:selectItems value="#{membersController.itemsAvailableSelectOne}"
+                                           var="coNicItem"
+                                           itemValue="#{coNicItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{chiefOccupantController.create}" value="#{bundle.Save}" update="display,:ChiefOccupantListForm:datalist,:growl" oncomplete="handleSubmit(args,'ChiefOccupantCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ChiefOccupantCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MembersCreateDlg" widgetVar="MembersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMembersTitle}">
+            <h:form id="MembersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{membersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{membersController.selected.id}" title="#{bundle.CreateMembersTitle_id}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_nic}" for="nic" />
+                        <p:inputText id="nic" value="#{membersController.selected.nic}" title="#{bundle.CreateMembersTitle_nic}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_nic}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_nameSin}" for="nameSin" />
+                        <p:inputText id="nameSin" value="#{membersController.selected.nameSin}" title="#{bundle.CreateMembersTitle_nameSin}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_nameSin}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_nameEng}" for="nameEng" />
+                        <p:inputText id="nameEng" value="#{membersController.selected.nameEng}" title="#{bundle.CreateMembersTitle_nameEng}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_nameEng}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_addressEng}" for="addressEng" />
+                        <p:inputText id="addressEng" value="#{membersController.selected.addressEng}" title="#{bundle.CreateMembersTitle_addressEng}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_addressEng}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_addressSin}" for="addressSin" />
+                        <p:inputText id="addressSin" value="#{membersController.selected.addressSin}" title="#{bundle.CreateMembersTitle_addressSin}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_addressSin}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_dob}" for="dob" />
+                        <p:calendar id="dob" pattern="MM/dd/yyyy" value="#{membersController.selected.dob}" title="#{bundle.EditMembersTitle_dob}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_dob}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_tel1}" for="tel1" />
+                        <p:inputText id="tel1" value="#{membersController.selected.tel1}" title="#{bundle.CreateMembersTitle_tel1}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_tel1}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_tel2}" for="tel2" />
+                        <p:inputText id="tel2" value="#{membersController.selected.tel2}" title="#{bundle.CreateMembersTitle_tel2}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_tel2}"/>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_relationshipId}" for="relationshipId" />
+                        <p:selectOneMenu id="relationshipId" value="#{membersController.selected.relationshipId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_relationshipId}">
+                            <f:selectItems value="#{relationshipController.itemsAvailableSelectOne}"
+                                           var="relationshipIdItem"
+                                           itemValue="#{relationshipIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_clusterId}" for="clusterId" />
+                        <p:selectOneMenu id="clusterId" value="#{membersController.selected.clusterId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_clusterId}">
+                            <f:selectItems value="#{clusterController.itemsAvailableSelectOne}"
+                                           var="clusterIdItem"
+                                           itemValue="#{clusterIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_dsignationId}" for="dsignationId" />
+                        <p:selectOneMenu id="dsignationId" value="#{membersController.selected.dsignationId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_dsignationId}">
+                            <f:selectItems value="#{designationController.itemsAvailableSelectOne}"
+                                           var="dsignationIdItem"
+                                           itemValue="#{dsignationIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMembersLabel_chiefOccupant}" for="chiefOccupant" />
+                        <p:selectOneMenu id="chiefOccupant" value="#{membersController.selected.chiefOccupant}" >
+                            <f:selectItems value="#{chiefOccupantController.itemsAvailableSelectOne}"
+                                           var="chiefOccupantItem"
+                                           itemValue="#{chiefOccupantItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{membersController.create}" value="#{bundle.Save}" update="display,:MembersListForm:datalist,:growl" oncomplete="handleSubmit(args,'MembersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MembersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
