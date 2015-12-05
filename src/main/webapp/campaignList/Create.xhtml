@@ -12,9 +12,7 @@
             <h:form id="CampaignListCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{campaignListController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCampaignListLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{campaignListController.selected.id}" title="#{bundle.CreateCampaignListTitle_id}" required="true" requiredMessage="#{bundle.CreateCampaignListRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateCampaignListLabel_campaignListName}" for="campaignListName" />
+                         <p:outputLabel value="#{bundle.CreateCampaignListLabel_campaignListName}" for="campaignListName" />
                         <p:inputText id="campaignListName" value="#{campaignListController.selected.campaignListName}" title="#{bundle.CreateCampaignListTitle_campaignListName}" required="true" requiredMessage="#{bundle.CreateCampaignListRequiredMessage_campaignListName}"/>
                         <p:outputLabel value="#{bundle.CreateCampaignListLabel_date}" for="date" />
                         <p:calendar id="date" pattern="MM/dd/yyyy HH:mm:ss" value="#{campaignListController.selected.date}" title="#{bundle.EditCampaignListTitle_date}" required="true" requiredMessage="#{bundle.EditCampaignListRequiredMessage_date}" showOn="button"/>

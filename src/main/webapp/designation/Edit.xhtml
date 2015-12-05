@@ -12,8 +12,7 @@
             <h:form id="DesignationEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{designationController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDesignationLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{designationController.selected.id}" title="#{bundle.EditDesignationTitle_id}" required="true" requiredMessage="#{bundle.EditDesignationRequiredMessage_id}"/>
+                       
                         <p:outputLabel value="#{bundle.EditDesignationLabel_designation}" for="designation" />
                         <p:inputText id="designation" value="#{designationController.selected.designation}" title="#{bundle.EditDesignationTitle_designation}" required="true" requiredMessage="#{bundle.EditDesignationRequiredMessage_designation}"/>
                     </p:panelGrid>

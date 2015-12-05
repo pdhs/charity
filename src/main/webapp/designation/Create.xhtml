@@ -12,9 +12,7 @@
             <h:form id="DesignationCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{designationController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateDesignationLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{designationController.selected.id}" title="#{bundle.CreateDesignationTitle_id}" required="true" requiredMessage="#{bundle.CreateDesignationRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateDesignationLabel_designation}" for="designation" />
+                       <p:outputLabel value="#{bundle.CreateDesignationLabel_designation}" for="designation" />
                         <p:inputText id="designation" value="#{designationController.selected.designation}" title="#{bundle.CreateDesignationTitle_designation}" required="true" requiredMessage="#{bundle.CreateDesignationRequiredMessage_designation}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{designationController.create}" value="#{bundle.Save}" update="display,:DesignationListForm:datalist,:growl" oncomplete="handleSubmit(args,'DesignationCreateDialog');"/>

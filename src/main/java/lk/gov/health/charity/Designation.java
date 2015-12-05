@@ -108,7 +108,7 @@ public class Designation implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.charity.Designation[ id=" + id + " ]";
+        return designation;
     }
     
 }

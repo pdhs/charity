@@ -12,8 +12,6 @@
             <h:form id="CampaignEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{campaignController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCampaignLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{campaignController.selected.id}" title="#{bundle.EditCampaignTitle_id}" required="true" requiredMessage="#{bundle.EditCampaignRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditCampaignLabel_campaign}" for="campaign" />
                         <p:inputText id="campaign" value="#{campaignController.selected.campaign}" title="#{bundle.EditCampaignTitle_campaign}" required="true" requiredMessage="#{bundle.EditCampaignRequiredMessage_campaign}"/>
                     </p:panelGrid>

@@ -108,7 +108,7 @@ public class Campaign implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.charity.Campaign[ id=" + id + " ]";
+        return campaign;
     }
     
 }

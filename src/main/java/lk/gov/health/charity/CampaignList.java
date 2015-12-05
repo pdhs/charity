@@ -139,7 +139,7 @@ public class CampaignList implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.charity.CampaignList[ id=" + id + " ]";
+        return campaignListName;
     }
     
 }

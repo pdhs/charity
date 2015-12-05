@@ -12,9 +12,7 @@
             <h:form id="ClusterEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clusterController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditClusterLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{clusterController.selected.id}" title="#{bundle.EditClusterTitle_id}" required="true" requiredMessage="#{bundle.EditClusterRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditClusterLabel_name}" for="name" />
+                       <p:outputLabel value="#{bundle.EditClusterLabel_name}" for="name" />
                         <p:inputText id="name" value="#{clusterController.selected.name}" title="#{bundle.EditClusterTitle_name}" required="true" requiredMessage="#{bundle.EditClusterRequiredMessage_name}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{clusterController.update}" value="#{bundle.Save}" update="display,:ClusterListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClusterEditDialog');"/>
