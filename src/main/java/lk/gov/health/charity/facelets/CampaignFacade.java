@@ -8,7 +8,7 @@ package lk.gov.health.charity.facelets;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import lk.gov.health.charity.Campaign;
+import lk.gov.health.charity.entity.Campaign;
 
 /**
  *

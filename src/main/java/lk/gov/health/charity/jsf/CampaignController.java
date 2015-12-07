@@ -1,6 +1,6 @@
 package lk.gov.health.charity.jsf;
 
-import lk.gov.health.charity.Campaign;
+import lk.gov.health.charity.entity.Campaign;
 import lk.gov.health.charity.jsf.util.JsfUtil;
 import lk.gov.health.charity.jsf.util.JsfUtil.PersistAction;
 import lk.gov.health.charity.facelets.CampaignFacade;

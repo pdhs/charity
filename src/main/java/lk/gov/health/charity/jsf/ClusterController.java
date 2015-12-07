@@ -1,6 +1,6 @@
 package lk.gov.health.charity.jsf;
 
-import lk.gov.health.charity.Cluster;
+import lk.gov.health.charity.entity.Cluster;
 import lk.gov.health.charity.jsf.util.JsfUtil;
 import lk.gov.health.charity.jsf.util.JsfUtil.PersistAction;
 import lk.gov.health.charity.facelets.ClusterFacade;

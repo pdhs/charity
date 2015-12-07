@@ -1,6 +1,6 @@
 package lk.gov.health.charity.jsf;
 
-import lk.gov.health.charity.Members;
+import lk.gov.health.charity.entity.Members;
 import lk.gov.health.charity.jsf.util.JsfUtil;
 import lk.gov.health.charity.jsf.util.JsfUtil.PersistAction;
 import lk.gov.health.charity.facelets.MembersFacade;

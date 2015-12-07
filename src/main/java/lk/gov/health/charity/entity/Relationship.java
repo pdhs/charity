@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lk.gov.health.charity;
+package lk.gov.health.charity.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -28,13 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author buddhika
  */
 @Entity
-@Table(name = "campaign")
+@Table(name = "relationship")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Campaign.findAll", query = "SELECT c FROM Campaign c"),
-    @NamedQuery(name = "Campaign.findById", query = "SELECT c FROM Campaign c WHERE c.id = :id"),
-    @NamedQuery(name = "Campaign.findByCampaign", query = "SELECT c FROM Campaign c WHERE c.campaign = :campaign")})
-public class Campaign implements Serializable {
+    @NamedQuery(name = "Relationship.findAll", query = "SELECT r FROM Relationship r"),
+    @NamedQuery(name = "Relationship.findById", query = "SELECT r FROM Relationship r WHERE r.id = :id"),
+    @NamedQuery(name = "Relationship.findByRelationship", query = "SELECT r FROM Relationship r WHERE r.relationship = :relationship")})
+public class Relationship implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,22 +43,22 @@ public class Campaign implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "campaign")
-    private String campaign;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "campaignId")
-    private Collection<CampaignList> campaignListCollection;
+    @Size(min = 1, max = 50)
+    @Column(name = "relationship")
+    private String relationship;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "relationshipId")
+    private Collection<Members> membersCollection;
 
-    public Campaign() {
+    public Relationship() {
     }
 
-    public Campaign(Integer id) {
+    public Relationship(Integer id) {
         this.id = id;
     }
 
-    public Campaign(Integer id, String campaign) {
+    public Relationship(Integer id, String relationship) {
         this.id = id;
-        this.campaign = campaign;
+        this.relationship = relationship;
     }
 
     public Integer getId() {
@@ -69,21 +69,21 @@ public class Campaign implements Serializable {
         this.id = id;
     }
 
-    public String getCampaign() {
-        return campaign;
+    public String getRelationship() {
+        return relationship;
     }
 
-    public void setCampaign(String campaign) {
-        this.campaign = campaign;
+    public void setRelationship(String relationship) {
+        this.relationship = relationship;
     }
 
     @XmlTransient
-    public Collection<CampaignList> getCampaignListCollection() {
-        return campaignListCollection;
+    public Collection<Members> getMembersCollection() {
+        return membersCollection;
     }
 
-    public void setCampaignListCollection(Collection<CampaignList> campaignListCollection) {
-        this.campaignListCollection = campaignListCollection;
+    public void setMembersCollection(Collection<Members> membersCollection) {
+        this.membersCollection = membersCollection;
     }
 
     @Override
@@ -96,10 +96,10 @@ public class Campaign implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Campaign)) {
+        if (!(object instanceof Relationship)) {
             return false;
         }
-        Campaign other = (Campaign) object;
+        Relationship other = (Relationship) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +108,7 @@ public class Campaign implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.charity.Campaign[ id=" + id + " ]";
+        return "lk.gov.health.charity.Relationship[ id=" + id + " ]";
     }
     
 }

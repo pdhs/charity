@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lk.gov.health.charity;
+package lk.gov.health.charity.entity;
 
 import java.io.Serializable;
 import java.util.Collection;

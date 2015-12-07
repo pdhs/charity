@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lk.gov.health.charity;
+package lk.gov.health.charity.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -28,13 +28,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author buddhika
  */
 @Entity
-@Table(name = "designation")
+@Table(name = "cluster")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Designation.findAll", query = "SELECT d FROM Designation d"),
-    @NamedQuery(name = "Designation.findById", query = "SELECT d FROM Designation d WHERE d.id = :id"),
-    @NamedQuery(name = "Designation.findByDesignation", query = "SELECT d FROM Designation d WHERE d.designation = :designation")})
-public class Designation implements Serializable {
+    @NamedQuery(name = "Cluster.findAll", query = "SELECT c FROM Cluster c"),
+    @NamedQuery(name = "Cluster.findById", query = "SELECT c FROM Cluster c WHERE c.id = :id"),
+    @NamedQuery(name = "Cluster.findByName", query = "SELECT c FROM Cluster c WHERE c.name = :name")})
+public class Cluster implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,21 +44,21 @@ public class Designation implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "designation")
-    private String designation;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dsignationId")
+    @Column(name = "name")
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clusterId")
     private Collection<Members> membersCollection;
 
-    public Designation() {
+    public Cluster() {
     }
 
-    public Designation(Integer id) {
+    public Cluster(Integer id) {
         this.id = id;
     }
 
-    public Designation(Integer id, String designation) {
+    public Cluster(Integer id, String name) {
         this.id = id;
-        this.designation = designation;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -69,12 +69,12 @@ public class Designation implements Serializable {
         this.id = id;
     }
 
-    public String getDesignation() {
-        return designation;
+    public String getName() {
+        return name;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @XmlTransient
@@ -96,10 +96,10 @@ public class Designation implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Designation)) {
+        if (!(object instanceof Cluster)) {
             return false;
         }
-        Designation other = (Designation) object;
+        Cluster other = (Cluster) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +108,7 @@ public class Designation implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.charity.Designation[ id=" + id + " ]";
+        return "lk.gov.health.charity.Cluster[ id=" + id + " ]";
     }
     
 }

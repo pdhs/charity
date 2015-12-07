@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lk.gov.health.charity;
+package lk.gov.health.charity.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -48,6 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Members.findByTel1", query = "SELECT m FROM Members m WHERE m.tel1 = :tel1"),
     @NamedQuery(name = "Members.findByTel2", query = "SELECT m FROM Members m WHERE m.tel2 = :tel2")})
 public class Members implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,7 +110,12 @@ public class Members implements Serializable {
     private ChiefOccupant chiefOccupant;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "coNic")
     private Collection<ChiefOccupant> chiefOccupantCollection;
+    @ManyToOne
+    private FamilyUnit familyUnit;
+    private boolean chiefHouseHolder;
 
+    
+    
     public Members() {
     }
 
@@ -129,6 +135,24 @@ public class Members implements Serializable {
         this.tel2 = tel2;
     }
 
+    public FamilyUnit getFamilyUnit() {
+        return familyUnit;
+    }
+
+    public void setFamilyUnit(FamilyUnit familyUnit) {
+        this.familyUnit = familyUnit;
+    }
+
+    public boolean isChiefHouseHolder() {
+        return chiefHouseHolder;
+    }
+
+    public void setChiefHouseHolder(boolean chiefHouseHolder) {
+        this.chiefHouseHolder = chiefHouseHolder;
+    }
+
+    
+    
     public Integer getId() {
         return id;
     }
@@ -275,5 +299,5 @@ public class Members implements Serializable {
     public String toString() {
         return "lk.gov.health.charity.Members[ id=" + id + " ]";
     }
-    
+
 }
