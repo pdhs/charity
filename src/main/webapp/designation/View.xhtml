@@ -12,9 +12,7 @@
             <h:form id="DesignationViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{designationController.selected != null}">
-                        <h:outputText value="#{bundle.ViewDesignationLabel_id}"/>
-                        <h:outputText value="#{designationController.selected.id}" title="#{bundle.ViewDesignationTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewDesignationLabel_designation}"/>
+                       <h:outputText value="#{bundle.ViewDesignationLabel_designation}"/>
                         <h:outputText value="#{designationController.selected.designation}" title="#{bundle.ViewDesignationTitle_designation}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="DesignationViewDialog.hide()"/>

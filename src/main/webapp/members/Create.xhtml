@@ -12,8 +12,6 @@
             <h:form id="MembersCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{membersController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateMembersLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{membersController.selected.id}" title="#{bundle.CreateMembersTitle_id}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateMembersLabel_nic}" for="nic" />
                         <p:inputText id="nic" value="#{membersController.selected.nic}" title="#{bundle.CreateMembersTitle_nic}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_nic}"/>
                         <p:outputLabel value="#{bundle.CreateMembersLabel_nameSin}" for="nameSin" />
@@ -32,9 +30,11 @@
                         <p:inputText id="tel2" value="#{membersController.selected.tel2}" title="#{bundle.CreateMembersTitle_tel2}" required="true" requiredMessage="#{bundle.CreateMembersRequiredMessage_tel2}"/>
                         <p:outputLabel value="#{bundle.CreateMembersLabel_relationshipId}" for="relationshipId" />
                         <p:selectOneMenu id="relationshipId" value="#{membersController.selected.relationshipId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_relationshipId}">
+                            <f:selectItem itemLabel="Select a Relationship" ></f:selectItem>
                             <f:selectItems value="#{relationshipController.itemsAvailableSelectOne}"
-                                           var="relationshipIdItem"
-                                           itemValue="#{relationshipIdItem}"/>
+                                           var="ri"
+                                           itemValue="#{ri}"
+                                           itemLabel="#{ri.relationship}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateMembersLabel_clusterId}" for="clusterId" />
                         <p:selectOneMenu id="clusterId" value="#{membersController.selected.clusterId}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_clusterId}">

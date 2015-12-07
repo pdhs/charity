@@ -29,12 +29,6 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCampaignListTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCampaignListTitle_campaignListName}"/>
                             </f:facet>
                             <h:outputText value="#{item.campaignListName}"/>
@@ -51,7 +45,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCampaignListTitle_campaignId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.campaignId}"/>
+                            <h:outputText value="#{item.campaignId.campaign}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{campaignListController.prepareCreate}" update=":CampaignListCreateForm" oncomplete="PF('CampaignListCreateDialog').show()"/>

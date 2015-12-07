@@ -12,9 +12,7 @@
             <h:form id="CampaignCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{campaignController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCampaignLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{campaignController.selected.id}" title="#{bundle.CreateCampaignTitle_id}" required="true" requiredMessage="#{bundle.CreateCampaignRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.CreateCampaignLabel_campaign}" for="campaign" />
+                         <p:outputLabel value="#{bundle.CreateCampaignLabel_campaign}" for="campaign" />
                         <p:inputText id="campaign" value="#{campaignController.selected.campaign}" title="#{bundle.CreateCampaignTitle_campaign}" required="true" requiredMessage="#{bundle.CreateCampaignRequiredMessage_campaign}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{campaignController.create}" value="#{bundle.Save}" update="display,:CampaignListForm:datalist,:growl" oncomplete="handleSubmit(args,'CampaignCreateDialog');"/>

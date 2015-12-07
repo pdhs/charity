@@ -18,13 +18,13 @@
                         <p:selectOneMenu id="members" value="#{chiefOccupantController.selected.members}" required="true" requiredMessage="#{bundle.EditChiefOccupantRequiredMessage_members}">
                             <f:selectItems value="#{membersController.itemsAvailableSelectOne}"
                                            var="membersItem"
-                                           itemValue="#{membersItem}"/>
+                                           itemValue="#{membersItem.nameEng}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateChiefOccupantLabel_coNic}" for="coNic" />
                         <p:selectOneMenu id="coNic" value="#{chiefOccupantController.selected.coNic}" required="true" requiredMessage="#{bundle.EditChiefOccupantRequiredMessage_coNic}">
                             <f:selectItems value="#{membersController.itemsAvailableSelectOne}"
                                            var="coNicItem"
-                                           itemValue="#{coNicItem}"/>
+                                           itemValue="#{coNicItem.nameEng}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{chiefOccupantController.create}" value="#{bundle.Save}" update="display,:ChiefOccupantListForm:datalist,:growl" oncomplete="handleSubmit(args,'ChiefOccupantCreateDialog');"/>

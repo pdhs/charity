@@ -12,8 +12,6 @@
             <h:form id="CampaignListElementsCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{campaignListElementsController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCampaignListElementsLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{campaignListElementsController.selected.id}" title="#{bundle.CreateCampaignListElementsTitle_id}" required="true" requiredMessage="#{bundle.CreateCampaignListElementsRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateCampaignListElementsLabel_campaignListId}" for="campaignListId" />
                         <p:selectOneMenu id="campaignListId" value="#{campaignListElementsController.selected.campaignListId}" required="true" requiredMessage="#{bundle.EditCampaignListElementsRequiredMessage_campaignListId}">
                             <f:selectItems value="#{campaignListController.itemsAvailableSelectOne}"

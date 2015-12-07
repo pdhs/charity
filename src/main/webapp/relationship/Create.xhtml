@@ -12,8 +12,6 @@
             <h:form id="RelationshipCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{relationshipController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateRelationshipLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{relationshipController.selected.id}" title="#{bundle.CreateRelationshipTitle_id}" required="true" requiredMessage="#{bundle.CreateRelationshipRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateRelationshipLabel_relationship}" for="relationship" />
                         <p:inputText id="relationship" value="#{relationshipController.selected.relationship}" title="#{bundle.CreateRelationshipTitle_relationship}" required="true" requiredMessage="#{bundle.CreateRelationshipRequiredMessage_relationship}"/>
                     </p:panelGrid>

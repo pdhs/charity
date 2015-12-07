@@ -87,25 +87,25 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMembersTitle_relationshipId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.relationshipId}"/>
+                            <h:outputText value="#{item.relationshipId.relationship}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMembersTitle_clusterId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.clusterId}"/>
+                            <h:outputText value="#{item.clusterId.name}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMembersTitle_dsignationId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.dsignationId}"/>
+                            <h:outputText value="#{item.dsignationId.designation}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMembersTitle_chiefOccupant}"/>
                             </f:facet>
-                            <h:outputText value="#{item.chiefOccupant}"/>
+                            <h:outputText value="#{item.chiefOccupant.coNic}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{membersController.prepareCreate}" update=":MembersCreateForm" oncomplete="PF('MembersCreateDialog').show()"/>
