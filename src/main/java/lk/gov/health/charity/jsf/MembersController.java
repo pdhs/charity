@@ -1,6 +1,6 @@
 package lk.gov.health.charity.jsf;
 
-import lk.gov.health.charity.entity.Members;
+import lk.gov.health.charity.entity.FamilyMember;
 import lk.gov.health.charity.jsf.util.JsfUtil;
 import lk.gov.health.charity.jsf.util.JsfUtil.PersistAction;
 import lk.gov.health.charity.facelets.MembersFacade;
@@ -25,17 +25,17 @@ public class MembersController implements Serializable {
 
     @EJB
     private lk.gov.health.charity.facelets.MembersFacade ejbFacade;
-    private List<Members> items = null;
-    private Members selected;
+    private List<FamilyMember> items = null;
+    private FamilyMember selected;
 
     public MembersController() {
     }
 
-    public Members getSelected() {
+    public FamilyMember getSelected() {
         return selected;
     }
 
-    public void setSelected(Members selected) {
+    public void setSelected(FamilyMember selected) {
         this.selected = selected;
     }
 
@@ -49,8 +49,8 @@ public class MembersController implements Serializable {
         return ejbFacade;
     }
 
-    public Members prepareCreate() {
-        selected = new Members();
+    public FamilyMember prepareCreate() {
+        selected = new FamilyMember();
         initializeEmbeddableKey();
         return selected;
     }
@@ -74,7 +74,7 @@ public class MembersController implements Serializable {
         }
     }
 
-    public List<Members> getItems() {
+    public List<FamilyMember> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,15 +109,15 @@ public class MembersController implements Serializable {
         }
     }
 
-    public List<Members> getItemsAvailableSelectMany() {
+    public List<FamilyMember> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Members> getItemsAvailableSelectOne() {
+    public List<FamilyMember> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Members.class)
+    @FacesConverter(forClass = FamilyMember.class)
     public static class MembersControllerConverter implements Converter {
 
         @Override
@@ -147,11 +147,11 @@ public class MembersController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Members) {
-                Members o = (Members) object;
+            if (object instanceof FamilyMember) {
+                FamilyMember o = (FamilyMember) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Members.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), FamilyMember.class.getName()});
                 return null;
             }
         }

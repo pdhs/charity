@@ -8,14 +8,14 @@ package lk.gov.health.charity.facelets;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import lk.gov.health.charity.entity.ChiefOccupant;
+import lk.gov.health.charity.entity.FamilyUnit;
 
 /**
  *
  * @author buddhika
  */
 @Stateless
-public class ChiefOccupantFacade extends AbstractFacade<ChiefOccupant> {
+public class FamilyUnitFacade extends AbstractFacade<FamilyUnit> {
     @PersistenceContext(unitName = "lk.gov.health_charity_war_1.0PU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class ChiefOccupantFacade extends AbstractFacade<ChiefOccupant> {
         return em;
     }
 
-    public ChiefOccupantFacade() {
-        super(ChiefOccupant.class);
+    public FamilyUnitFacade() {
+        super(FamilyUnit.class);
     }
     
 }

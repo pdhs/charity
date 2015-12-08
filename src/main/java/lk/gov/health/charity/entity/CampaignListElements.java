@@ -32,16 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CampaignListElements implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "campaign_list_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private CampaignList campaignListId;
     @JoinColumn(name = "member_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Members memberId;
+    @ManyToOne
+    private FamilyMember memberId;
 
     public CampaignListElements() {
     }
@@ -66,11 +66,11 @@ public class CampaignListElements implements Serializable {
         this.campaignListId = campaignListId;
     }
 
-    public Members getMemberId() {
+    public FamilyMember getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(Members memberId) {
+    public void setMemberId(FamilyMember memberId) {
         this.memberId = memberId;
     }
 

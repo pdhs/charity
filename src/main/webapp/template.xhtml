@@ -24,11 +24,13 @@
                             <p:menuitem value="Campaign" outcome="/campaign/List.xhtml" />
                             <p:menuitem value="CampaignList" outcome="/campaignList/List.xhtml" />
                             <p:menuitem value="CampaignListElements" outcome="/campaignListElements/List.xhtml" />
-                            <p:menuitem value="ChiefOccupant" outcome="/chiefOccupant/List.xhtml" />
                             <p:menuitem value="Cluster" outcome="/cluster/List.xhtml" />
                             <p:menuitem value="Designation" outcome="/designation/List.xhtml" />
                             <p:menuitem value="Members" outcome="/members/List.xhtml" />
                             <p:menuitem value="Relationship" outcome="/relationship/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="#{bundle1.DataEntry}" >
+                            <p:menuitem ajax="false" value="#{bundle1.FamilyUnit}" action="/familyUnit/List.xhtml" />
                         </p:submenu>
                     </p:menubar>
                 </h:form>

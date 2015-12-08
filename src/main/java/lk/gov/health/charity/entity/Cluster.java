@@ -33,11 +33,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Cluster.findAll", query = "SELECT c FROM Cluster c"),
     @NamedQuery(name = "Cluster.findById", query = "SELECT c FROM Cluster c WHERE c.id = :id"),
-    @NamedQuery(name = "Cluster.findByName", query = "SELECT c FROM Cluster c WHERE c.name = :name")})
+    @NamedQuery(name = "Cluster.findByName", query = "SELECT c FROM Cluster c WHERE upper(c.name) like :name")})
 public class Cluster implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -47,7 +47,7 @@ public class Cluster implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clusterId")
-    private Collection<Members> membersCollection;
+    private Collection<FamilyMember> membersCollection;
 
     public Cluster() {
     }
@@ -78,11 +78,11 @@ public class Cluster implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Members> getMembersCollection() {
+    public Collection<FamilyMember> getMembersCollection() {
         return membersCollection;
     }
 
-    public void setMembersCollection(Collection<Members> membersCollection) {
+    public void setMembersCollection(Collection<FamilyMember> membersCollection) {
         this.membersCollection = membersCollection;
     }
 

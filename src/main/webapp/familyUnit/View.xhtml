@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FamilyUnitViewDlg" widgetVar="FamilyUnitViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle1.ViewFamilyUnitTitle}">
+            <h:form id="FamilyUnitViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{familyUnitController.selected != null}">
+                        <h:outputText value="#{bundle1.ViewFamilyUnitLabel_cluster}"/>
+                        <h:outputText value="#{familyUnitController.selected.cluster}" title="#{bundle1.ViewFamilyUnitTitle_cluster}"/>
+                        <h:outputText value="#{bundle1.ViewFamilyUnitLabel_dateEntryDate}"/>
+                        <h:outputText value="#{familyUnitController.selected.dateEntryDate}" title="#{bundle1.ViewFamilyUnitTitle_dateEntryDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle1.ViewFamilyUnitLabel_chiefHouseHolder}"/>
+                        <h:outputText value="#{familyUnitController.selected.chiefHouseHolder}" title="#{bundle1.ViewFamilyUnitTitle_chiefHouseHolder}"/>
+                        <h:outputText value="#{bundle1.ViewFamilyUnitLabel_id}"/>
+                        <h:outputText value="#{familyUnitController.selected.id}" title="#{bundle1.ViewFamilyUnitTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle1.Close}" onclick="FamilyUnitViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

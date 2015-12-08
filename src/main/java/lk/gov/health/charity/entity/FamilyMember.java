@@ -8,10 +8,10 @@ package lk.gov.health.charity.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,13 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -34,96 +30,74 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author buddhika
  */
 @Entity
-@Table(name = "members")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Members.findAll", query = "SELECT m FROM Members m"),
-    @NamedQuery(name = "Members.findById", query = "SELECT m FROM Members m WHERE m.id = :id"),
-    @NamedQuery(name = "Members.findByNic", query = "SELECT m FROM Members m WHERE m.nic = :nic"),
-    @NamedQuery(name = "Members.findByNameSin", query = "SELECT m FROM Members m WHERE m.nameSin = :nameSin"),
-    @NamedQuery(name = "Members.findByNameEng", query = "SELECT m FROM Members m WHERE m.nameEng = :nameEng"),
-    @NamedQuery(name = "Members.findByAddressEng", query = "SELECT m FROM Members m WHERE m.addressEng = :addressEng"),
-    @NamedQuery(name = "Members.findByAddressSin", query = "SELECT m FROM Members m WHERE m.addressSin = :addressSin"),
-    @NamedQuery(name = "Members.findByDob", query = "SELECT m FROM Members m WHERE m.dob = :dob"),
-    @NamedQuery(name = "Members.findByTel1", query = "SELECT m FROM Members m WHERE m.tel1 = :tel1"),
-    @NamedQuery(name = "Members.findByTel2", query = "SELECT m FROM Members m WHERE m.tel2 = :tel2")})
-public class Members implements Serializable {
+    @NamedQuery(name = "FamilyMember.findAll", query = "SELECT m FROM FamilyMember m"),
+    @NamedQuery(name = "FamilyMember.findById", query = "SELECT m FROM FamilyMember m WHERE m.id = :id"),
+    @NamedQuery(name = "FamilyMember.findByNic", query = "SELECT m FROM FamilyMember m WHERE m.nic = :nic"),
+    @NamedQuery(name = "FamilyMember.findByNameSin", query = "SELECT m FROM FamilyMember m WHERE m.nameSin = :nameSin"),
+    @NamedQuery(name = "FamilyMember.findByNameEng", query = "SELECT m FROM FamilyMember m WHERE m.nameEng = :nameEng"),
+    @NamedQuery(name = "FamilyMember.findByAddressEng", query = "SELECT m FROM FamilyMember m WHERE m.addressEng = :addressEng"),
+    @NamedQuery(name = "FamilyMember.findByAddressSin", query = "SELECT m FROM FamilyMember m WHERE m.addressSin = :addressSin"),
+    @NamedQuery(name = "FamilyMember.findByDob", query = "SELECT m FROM FamilyMember m WHERE m.dob = :dob"),
+    @NamedQuery(name = "FamilyMember.findByTel1", query = "SELECT m FROM FamilyMember m WHERE m.tel1 = :tel1"),
+    @NamedQuery(name = "FamilyMember.findByTel2", query = "SELECT m FROM FamilyMember m WHERE m.tel2 = :tel2")})
+public class FamilyMember implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 12)
-    @Column(name = "nic")
     private String nic;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 150)
     @Column(name = "name_sin")
     private String nameSin;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 150)
     @Column(name = "name_eng")
     private String nameEng;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "address_eng")
     private String addressEng;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
     @Column(name = "address_sin")
     private String addressSin;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "dob")
     @Temporal(TemporalType.DATE)
     private Date dob;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "tel1")
     private String tel1;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
     @Column(name = "tel2")
     private String tel2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberId")
     private Collection<CampaignListElements> campaignListElementsCollection;
     @JoinColumn(name = "relationship_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Relationship relationshipId;
     @JoinColumn(name = "cluster_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Cluster clusterId;
     @JoinColumn(name = "dsignation_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Designation dsignationId;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "members")
-    private ChiefOccupant chiefOccupant;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coNic")
-    private Collection<ChiefOccupant> chiefOccupantCollection;
     @ManyToOne
+    private Designation dsignationId;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private FamilyUnit familyUnit;
     private boolean chiefHouseHolder;
+    Long familyMemberOrderNo;
 
-    
-    
-    public Members() {
+    public Long getFamilyMemberOrderNo() {
+        return familyMemberOrderNo;
     }
 
-    public Members(Integer id) {
+    public void setFamilyMemberOrderNo(Long familyMemberOrderNo) {
+        this.familyMemberOrderNo = familyMemberOrderNo;
+    }
+
+    
+    
+
+    public FamilyMember() {
+    }
+
+    public FamilyMember(Integer id) {
         this.id = id;
     }
 
-    public Members(Integer id, String nic, String nameSin, String nameEng, String addressEng, String addressSin, Date dob, String tel1, String tel2) {
+    public FamilyMember(Integer id, String nic, String nameSin, String nameEng, String addressEng, String addressSin, Date dob, String tel1, String tel2) {
         this.id = id;
         this.nic = nic;
         this.nameSin = nameSin;
@@ -151,8 +125,6 @@ public class Members implements Serializable {
         this.chiefHouseHolder = chiefHouseHolder;
     }
 
-    
-    
     public Integer getId() {
         return id;
     }
@@ -258,22 +230,6 @@ public class Members implements Serializable {
         this.dsignationId = dsignationId;
     }
 
-    public ChiefOccupant getChiefOccupant() {
-        return chiefOccupant;
-    }
-
-    public void setChiefOccupant(ChiefOccupant chiefOccupant) {
-        this.chiefOccupant = chiefOccupant;
-    }
-
-    @XmlTransient
-    public Collection<ChiefOccupant> getChiefOccupantCollection() {
-        return chiefOccupantCollection;
-    }
-
-    public void setChiefOccupantCollection(Collection<ChiefOccupant> chiefOccupantCollection) {
-        this.chiefOccupantCollection = chiefOccupantCollection;
-    }
 
     @Override
     public int hashCode() {
@@ -285,10 +241,10 @@ public class Members implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Members)) {
+        if (!(object instanceof FamilyMember)) {
             return false;
         }
-        Members other = (Members) object;
+        FamilyMember other = (FamilyMember) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -297,7 +253,7 @@ public class Members implements Serializable {
 
     @Override
     public String toString() {
-        return "lk.gov.health.charity.Members[ id=" + id + " ]";
+        return "lk.gov.health.charity.FamilyMember[ id=" + id + " ]";
     }
 
 }

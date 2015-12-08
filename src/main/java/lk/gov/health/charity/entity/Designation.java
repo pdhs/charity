@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Designation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -47,7 +47,7 @@ public class Designation implements Serializable {
     @Column(name = "designation")
     private String designation;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "dsignationId")
-    private Collection<Members> membersCollection;
+    private Collection<FamilyMember> membersCollection;
 
     public Designation() {
     }
@@ -78,11 +78,11 @@ public class Designation implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Members> getMembersCollection() {
+    public Collection<FamilyMember> getMembersCollection() {
         return membersCollection;
     }
 
-    public void setMembersCollection(Collection<Members> membersCollection) {
+    public void setMembersCollection(Collection<FamilyMember> membersCollection) {
         this.membersCollection = membersCollection;
     }
 

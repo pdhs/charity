@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FamilyUnitEditDlg" widgetVar="FamilyUnitEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle1.EditFamilyUnitTitle}">
+            <h:form id="FamilyUnitEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid  rendered="#{familyUnitController.selected != null}">
+
+                        <p:row >
+                            <p:column colspan="5" rowspan="2" >
+                                <h:outputText value="Updating Members Details" ></h:outputText>
+                            </p:column>
+                            <p:column  >
+                                <h:outputText value="Cluster" ></h:outputText>
+                            </p:column>
+                            <p:column  >
+                                <h:outputText value="Data Entry Date" ></h:outputText>
+                            </p:column>
+                        </p:row>
+                        <p:row >
+                            <p:column >
+                                <p:autoComplete value="#{familyUnitController.selected.cluster}"
+                                                completeMethod="#{clusterController.completeClusters}"
+                                                var="c"
+                                                itemLabel="#{c.name}"
+                                                itemValue="#{c}" ></p:autoComplete>
+                            </p:column>
+                            <p:column >
+                                <p:calendar id="dateEntryDate" pattern="MM/dd/yyyy" value="#{familyUnitController.selected.dateEntryDate}" title="#{bundle1.EditFamilyUnitTitle_dateEntryDate}" />
+                            </p:column>
+                        </p:row>
+                        <p:row >
+                            <p:column colspan="7" >
+                                <h:outputText value="Chief Occupant Details" ></h:outputText>
+                            </p:column>
+                        </p:row>
+                        <p:row >
+                            <p:column >
+                                <h:outputText value="Name" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="NIC" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Date of Birth" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Phone" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Address" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Position"  ></h:outputText>
+                            </p:column>
+                        </p:row>
+
+                        <p:row rendered="#{familyUnitController.selected.chiefHouseHolder ne null}">
+                            <p:column >
+                                <h:inputText value="#{familyUnitController.selected.chiefHouseHolder.nameSin}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <h:inputText value="#{familyUnitController.selected.chiefHouseHolder.nic}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <p:calendar value="#{familyUnitController.selected.chiefHouseHolder.dob}" pattern="dd/MM/yy" navigator="true"></p:calendar>
+                            </p:column>
+                            <p:column >
+                                <h:inputText value="#{familyUnitController.selected.chiefHouseHolder.tel1}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <h:inputText value="#{familyUnitController.selected.chiefHouseHolder.addressSin}" ></h:inputText>
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu value="#{familyUnitController.selected.chiefHouseHolder.dsignationId}" >
+                                    <f:selectItem itemLabel="No Position" ></f:selectItem>
+                                    <f:selectItems value="#{designationController.itemsAvailableSelectOne}" var="p" itemLabel="#{p.designation}" itemValue="#{p}" ></f:selectItems>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+
+                        <p:row >
+                            <p:column colspan="7" >
+                                <h:outputText value="Other Occupant Details" ></h:outputText>
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row >
+                            <p:column >
+                                <h:outputText value="Name" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="NIC" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Date of Birth" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Phone" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Address" ></h:outputText>
+                            </p:column>
+                            <p:column >
+                                <h:outputText value="Relationship"  ></h:outputText>
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row >
+                            <p:column >
+                                <h:inputText id="txtFmNameSin" value="#{familyUnitController.addingFamilyMember.nameSin}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <h:inputText  id="txtFmNic"  value="#{familyUnitController.addingFamilyMember.nic}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <p:calendar  id="txtFmDob"  value="#{familyUnitController.addingFamilyMember.dob}" pattern="dd/MM/yy" navigator="true"></p:calendar>
+                            </p:column>
+                            <p:column >
+                                <h:inputText id="txtFmTel1" value="#{familyUnitController.addingFamilyMember.tel1}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <h:inputText id="txtFmAddSin" value="#{familyUnitController.addingFamilyMember.addressSin}" ></h:inputText>
+                            </p:column>
+                            <p:column >
+                                <p:selectOneMenu id="somFmPos" value="#{familyUnitController.addingFamilyMember.relationshipId}" >
+                                    <f:selectItem itemLabel="Select Relationship" ></f:selectItem>
+                                    <f:selectItems value="#{relationshipController.itemsAvailableSelectOne}" var="r" itemLabel="#{r.relationship}" itemValue="#{r}" ></f:selectItems>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column >
+                                 <h:commandButton value="Add" action="#{familyUnitController.addFamilyMemberToSavedOne()}"
+                                                 >
+                                     <f:ajax  execute ="txtFmNameSin txtFmNic txtFmDob txtFmTel1 txtFmAddSin somFmPos"
+                                              render="tblFms" ></f:ajax>
+                                 </h:commandButton>
+                            </p:column>
+                        </p:row>
+
+                        <p:row >
+                            <p:column colspan="7" >
+                                <p:dataTable id="tblFms" value="#{familyUnitController.selected.membersExceptChh}" 
+                                             var="fm"                                             >
+                                    <p:column headerText="Name" >
+                                        <h:outputText value="#{fm.nameSin}" ></h:outputText>
+                                    </p:column>
+                                    <p:column headerText="NIC" >
+                                        <h:outputText value="#{fm.nic}" ></h:outputText>
+                                    </p:column>
+                                    <p:column headerText="NIC" >
+                                        <h:outputText value="#{fm.dob}" >
+                                            <f:convertDateTime pattern="dd MMMM yyyy" ></f:convertDateTime>
+                                        </h:outputText>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:column>
+                        </p:row>
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{familyUnitController.update}" value="#{bundle1.Save}" update="display,:FamilyUnitListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FamilyUnitEditDialog');"/>
+                    <p:commandButton value="#{bundle1.Cancel}" onclick="FamilyUnitEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

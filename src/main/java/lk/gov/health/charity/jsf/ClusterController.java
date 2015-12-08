@@ -6,7 +6,9 @@ import lk.gov.health.charity.jsf.util.JsfUtil.PersistAction;
 import lk.gov.health.charity.facelets.ClusterFacade;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -109,6 +111,12 @@ public class ClusterController implements Serializable {
         }
     }
 
+    public List<Cluster> completeClusters(String qry){
+        Map m = new HashMap();
+        m.put("name", "%" +  qry.toUpperCase() + "%");
+        return getFacade().findByNamedQuery("Cluster.findByName", m);
+    }
+    
     public List<Cluster> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
